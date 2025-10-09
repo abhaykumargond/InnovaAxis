@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal: InnovAxis CodeQuest 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: "Tech Professional" - A modern and clean palette using slate, sky blue, and white to convey innovation and professionalism. -->
+    <!-- Application Structure Plan: The SPA is designed as a top-to-bottom narrative proposal, guiding the reader from the high-level vision to the specific operational details. The structure uses distinct, full-width sections for clarity: Hero, Objective, Outcomes, Schedule, Rules, Budget, and Resources. This linear flow is more intuitive for a proposal document than a complex dashboard, allowing a stakeholder (like an HOD) to easily digest the information in a logical sequence. Key interactions include tabbed navigation for the schedule to condense information and an interactive donut chart for the budget to make financial data more engaging and transparent. This structure prioritizes clear communication and persuasive storytelling over non-linear data exploration. -->
+    <!-- Visualization & Content Choices: 
+        1. Budget Data -> Goal: Inform/Justify -> Viz: Donut Chart -> Interaction: Hover to see details -> Justification: Visually breaks down cost proportions, making it easier to understand than a static table. Highlights prize money as a key investment. -> Library: Chart.js (Canvas).
+        2. Event Schedule -> Goal: Organize/Inform -> Presentation: Tabbed Interface -> Interaction: Click tabs to switch days -> Justification: Condenses 4 days of information into a compact, user-controlled view, preventing clutter. -> Method: Vanilla JS + Tailwind.
+        3. Judging Criteria/Rules/Outcomes -> Goal: Inform/Persuade -> Presentation: Icon-driven Card Layout -> Interaction: Static -> Justification: Uses visual hierarchy and icons to make text-heavy sections scannable and digestible. -> Method: HTML + Tailwind.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 400px;
+        }
+        .tab-active {
+            background-color: #0284c7; /* sky-600 */
+            color: white;
+            border-color: #0284c7; /* sky-600 */
+        }
+        .tab-inactive {
+            background-color: white;
+            color: #475569; /* slate-600 */
+            border-color: #e2e8f0; /* slate-200 */
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-slate-200">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-slate-900">InnovAxis CodeQuest <span class="text-sky-600">2025</span></h1>
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#objective" class="text-slate-600 hover:text-sky-600 transition-colors">Objective</a>
+                <a href="#schedule" class="text-slate-600 hover:text-sky-600 transition-colors">Schedule</a>
+                <a href="#rules" class="text-slate-600 hover:text-sky-600 transition-colors">Rules</a>
+                <a href="#budget" class="text-slate-600 hover:text-sky-600 transition-colors">Budget</a>
+                <a href="#outcomes" class="text-slate-600 hover:text-sky-600 transition-colors">Outcomes</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="bg-white">
+            <div class="container mx-auto px-6 py-16 md:py-24 text-center">
+                <h2 class="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight">Hackathon Proposal: <br><span class="text-sky-600">InnovAxis CodeQuest 2025</span></h2>
+                <p class="mt-4 text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">A premier platform for students to innovate, collaborate, and build the future through technology.</p>
+                <div class="mt-8 text-left inline-block bg-slate-100 p-6 rounded-lg border border-slate-200">
+                    <p class="text-slate-700 font-medium"><span class="font-bold text-slate-900">Organized by:</span> Department of Computer Science & Engineering</p>
+                    <p class="mt-2 text-slate-700 font-medium"><span class="font-bold text-slate-900">Proposed by:</span> Abhay Kumar Gond, B.Tech (CSE) — Final Year</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Objective Section -->
+        <section id="objective" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold text-slate-900">🎯 Core Objective</h3>
+                    <p class="mt-3 text-lg text-slate-600 max-w-2xl mx-auto">This section outlines the primary goal of the hackathon: to create a dynamic environment for technological innovation and skill development among students in the Kanpur region.</p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-md border border-slate-200">
+                    <p class="text-center text-slate-700 text-lg leading-relaxed">
+                        To provide a structured and competitive platform for students from the Kanpur region to showcase their technical and problem-solving skills. The event will challenge participants to build real-world, innovative solutions using technology, thereby fostering a culture of creativity, collaboration, and hands-on learning that bridges academic knowledge with practical application.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Schedule Section -->
+        <section id="schedule" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold text-slate-900">🗓️ Event Schedule & Blueprint</h3>
+                    <p class="mt-3 text-lg text-slate-600 max-w-2xl mx-auto">The hackathon is structured over four days, blending online development with an offline finale. Explore the day-by-day plan and the technology themes participants can work on.</p>
+                </div>
+                <div class="grid md:grid-cols-5 gap-8 items-start">
+                    <div class="md:col-span-3">
+                        <div id="tabs-container" class="flex flex-col sm:flex-row mb-4 rounded-lg p-1 bg-slate-100 border">
+                            <button data-tab="day1" class="schedule-tab tab-active flex-1 text-center font-semibold py-3 px-4 rounded-md transition-all duration-300">Day 1: Online</button>
+                            <button data-tab="day2" class="schedule-tab tab-inactive flex-1 text-center font-semibold py-3 px-4 rounded-md transition-all duration-300">Day 2: Online</button>
+                            <button data-tab="day3" class="schedule-tab tab-inactive flex-1 text-center font-semibold py-3 px-4 rounded-md transition-all duration-300">Day 3: Online</button>
+                            <button data-tab="day4" class="schedule-tab tab-inactive flex-1 text-center font-semibold py-3 px-4 rounded-md transition-all duration-300">Day 4: Offline</button>
+                        </div>
+
+                        <div id="tab-content" class="bg-white p-6 rounded-lg border border-slate-200 min-h-[250px]">
+                            <div class="tab-pane active" id="day1">
+                                <h4 class="font-bold text-xl mb-3 text-sky-700">Kickoff & Foundation</h4>
+                                <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                    <li>Official Hackathon kickoff and welcome address.</li>
+                                    <li>Announcement of themes and problem statements.</li>
+                                    <li>Team registration and formation portal opens.</li>
+                                    <li>Mandatory GitHub repository creation for all teams.</li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane hidden" id="day2">
+                                <h4 class="font-bold text-xl mb-3 text-sky-700">Development & Progress</h4>
+                                <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                    <li>Full day dedicated to project development.</li>
+                                    <li>Mentor support sessions available via Discord/Google Meet.</li>
+                                    <li>Daily progress submission required via GitHub commits.</li>
+                                    <li>Workshops on relevant technologies (optional).</li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane hidden" id="day3">
+                                <h4 class="font-bold text-xl mb-3 text-sky-700">Finalization & Submission</h4>
+                                <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                    <li>Final hours of project development and refinement.</li>
+                                    <li>Project submission deadline.</li>
+                                    <li>Submissions must include a detailed README file.</li>
+                                    <li>Screenshots and a short demo video are mandatory.</li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane hidden" id="day4">
+                               <h4 class="font-bold text-xl mb-3 text-sky-700">Presentation & Finale</h4>
+                                <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                    <li>In-person project presentations at the department.</li>
+                                    <li>Evaluation by a distinguished panel of judges.</li>
+                                    <li>Networking session with judges and faculty.</li>
+                                    <li>Awards ceremony and announcement of results.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2 bg-slate-50 p-6 rounded-lg border border-slate-200">
+                        <h4 class="font-bold text-xl mb-4 text-slate-800">💡 Technology Themes</h4>
+                        <p class="text-sm text-slate-600 mb-4">Participants are encouraged to build projects within these domains or pursue open innovation.</p>
+                        <div class="space-y-2">
+                            <div class="bg-white p-3 rounded-md border text-sm font-medium text-slate-700">AI / Machine Learning</div>
+                            <div class="bg-white p-3 rounded-md border text-sm font-medium text-slate-700">Web & App Development</div>
+                            <div class="bg-white p-3 rounded-md border text-sm font-medium text-slate-700">Internet of Things (IoT)</div>
+                            <div class="bg-white p-3 rounded-md border text-sm font-medium text-slate-700">Cybersecurity</div>
+                            <div class="bg-white p-3 rounded-md border text-sm font-medium text-slate-700">Blockchain Technology</div>
+                            <div class="bg-white p-3 rounded-md border text-sm font-medium text-slate-700">Open Innovation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rules & Judging -->
+        <section id="rules" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold text-slate-900">⚖️ Rules & Judging Criteria</h3>
+                    <p class="mt-3 text-lg text-slate-600 max-w-2xl mx-auto">This section outlines the rules for participation and the criteria that will be used by the judging panel to evaluate the projects, ensuring a fair and transparent competition.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-2xl font-bold mb-6 text-slate-800">Participation Rules</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-start p-4 bg-white rounded-lg border border-slate-200">
+                                <span class="text-2xl mr-4">👥</span>
+                                <div>
+                                    <h5 class="font-semibold">Team Size</h5>
+                                    <p class="text-slate-600">Teams must consist of 2 to 4 members.</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start p-4 bg-white rounded-lg border border-slate-200">
+                                <span class="text-2xl mr-4">🎓</span>
+                                <div>
+                                    <h5 class="font-semibold">Eligibility</h5>
+                                    <p class="text-slate-600">Open to all students currently enrolled in Kanpur-based colleges.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start p-4 bg-white rounded-lg border border-slate-200">
+                                <span class="text-2xl mr-4">📂</span>
+                                <div>
+                                    <h5 class="font-semibold">Version Control</h5>
+                                    <p class="text-slate-600">Each team must maintain a GitHub repository with proper documentation.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold mb-6 text-slate-800">Judging Criteria</h4>
+                        <div class="space-y-4">
+                             <div class="flex items-start p-4 bg-white rounded-lg border border-slate-200">
+                                <span class="text-2xl mr-4">💡</span>
+                                <div>
+                                    <h5 class="font-semibold">Innovation & Creativity</h5>
+                                    <p class="text-slate-600">Originality and uniqueness of the idea.</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start p-4 bg-white rounded-lg border border-slate-200">
+                                <span class="text-2xl mr-4">💻</span>
+                                <div>
+                                    <h5 class="font-semibold">Technical Implementation</h5>
+                                    <p class="text-slate-600">Quality of code, complexity, and execution.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start p-4 bg-white rounded-lg border border-slate-200">
+                                <span class="text-2xl mr-4">🌍</span>
+                                <div>
+                                    <h5 class="font-semibold">Impact & Usefulness</h5>
+                                    <p class="text-slate-600">Potential real-world impact and user value.</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start p-4 bg-white rounded-lg border border-slate-200">
+                                <span class="text-2xl mr-4">📝</span>
+                                <div>
+                                    <h5 class="font-semibold">Presentation & Documentation</h5>
+                                    <p class="text-slate-600">Clarity of the presentation and quality of the documentation.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Budget & Awards Section -->
+        <section id="budget" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold text-slate-900">💰 Budget & Awards</h3>
+                    <p class="mt-3 text-lg text-slate-600 max-w-2xl mx-auto">A transparent breakdown of the estimated budget required to execute the event, along with the proposed awards to recognize and reward the top-performing teams.</p>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h4 class="text-2xl font-bold text-slate-800 mb-4 text-center">Estimated Budget Summary</h4>
+                        <div class="chart-container">
+                            <canvas id="budgetChart"></canvas>
+                        </div>
+                        <p class="text-center mt-4 text-slate-600 font-semibold text-lg">Total Estimated Budget: <span class="text-sky-600">₹27,000</span></p>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold text-slate-800 mb-6">🏆 Awards & Recognition</h4>
+                        <div class="space-y-4">
+                            <div class="p-6 rounded-lg bg-amber-100 border border-amber-200">
+                                <h5 class="font-bold text-xl text-amber-800">1st Place Winner</h5>
+                                <p class="text-3xl font-bold text-amber-900 mt-1">₹10,000</p>
+                                <p class="text-amber-700 mt-2">Cash Prize + Trophy + Certificate of Excellence</p>
+                            </div>
+                            <div class="p-6 rounded-lg bg-slate-200 border border-slate-300">
+                                <h5 class="font-bold text-xl text-slate-800">1st Runner-Up</h5>
+                                <p class="text-3xl font-bold text-slate-900 mt-1">₹5,000</p>
+                                <p class="text-slate-700 mt-2">Cash Prize + Certificate of Excellence</p>
+                            </div>
+                            <div class="p-6 rounded-lg bg-orange-200 border border-orange-300">
+                                <h5 class="font-bold text-xl text-orange-800">2nd Runner-Up</h5>
+                                <p class="text-3xl font-bold text-orange-900 mt-1">₹5,000</p>
+                                <p class="text-orange-700 mt-2">Cash Prize + Certificate of Excellence</p>
+                            </div>
+                            <div class="p-4 rounded-lg bg-sky-100 border border-sky-200 text-center">
+                                <p class="font-semibold text-sky-800">All participants will receive a Certificate of Participation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources & Outcomes -->
+        <section id="outcomes" class="py-16 md:py-24">
+             <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold text-slate-900">🙌 Resources & Expected Outcomes</h3>
+                    <p class="mt-3 text-lg text-slate-600 max-w-2xl mx-auto">The support infrastructure we plan to provide and the significant positive outcomes we anticipate for students, the department, and the local tech community.</p>
+                </div>
+                 <div class="max-w-6xl mx-auto mb-16">
+                     <h4 class="text-2xl font-bold text-slate-800 mb-6 text-center">🧩 Resources & Support System</h4>
+                     <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                         <div class="bg-white p-6 rounded-lg border border-slate-200">
+                             <span class="text-4xl">📚</span>
+                             <h5 class="font-bold mt-2">GitHub</h5>
+                             <p class="text-sm text-slate-600 mt-1">For code submissions and version control.</p>
+                         </div>
+                         <div class="bg-white p-6 rounded-lg border border-slate-200">
+                             <span class="text-4xl">💬</span>
+                             <h5 class="font-bold mt-2">Discord / Meet</h5>
+                             <p class="text-sm text-slate-600 mt-1">For online discussions and mentor support.</p>
+                         </div>
+                         <div class="bg-white p-6 rounded-lg border border-slate-200">
+                             <span class="text-4xl">🏢</span>
+                             <h5 class="font-bold mt-2">Department Labs</h5>
+                             <p class="text-sm text-slate-600 mt-1">For final day presentations and offline work.</p>
+                         </div>
+                         <div class="bg-white p-6 rounded-lg border border-slate-200">
+                             <span class="text-4xl">👨‍🏫</span>
+                             <h5 class="font-bold mt-2">Technical Mentors</h5>
+                             <p class="text-sm text-slate-600 mt-1">For guidance and query support throughout.</p>
+                         </div>
+                     </div>
+                 </div>
+                 
+                 <div class="max-w-6xl mx-auto">
+                    <h4 class="text-2xl font-bold text-slate-800 mb-6 text-center">📈 Expected Outcomes</h4>
+                    <div class="grid md:grid-cols-3 gap-8 text-center">
+                        <div class="bg-white p-8 rounded-lg border border-slate-200 shadow-sm">
+                            <span class="text-5xl">🚀</span>
+                            <h5 class="text-xl font-bold mt-4">Fosters Innovation</h5>
+                            <p class="text-slate-600 mt-2">Encourages a vibrant coding and innovation culture among students in the Kanpur region.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg border border-slate-200 shadow-sm">
+                            <span class="text-5xl">🤝</span>
+                            <h5 class="text-xl font-bold mt-4">Builds Collaboration</h5>
+                            <p class="text-slate-600 mt-2">Strengthens ties and promotes collaboration between local educational institutions.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg border border-slate-200 shadow-sm">
+                            <span class="text-5xl">🌟</span>
+                            <h5 class="text-xl font-bold mt-4">Identifies Talent</h5>
+                            <p class="text-slate-600 mt-2">Serves as a platform to identify promising talent for internships and startup incubation.</p>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p class="font-bold">Proposal for InnovAxis CodeQuest 2025</p>
+            <p class="text-sm text-slate-400 mt-2">Prepared by: Abhay Kumar Gond | B.Tech, Computer Science & Engineering (Final Year)</p>
+            <p class="text-sm text-slate-400 mt-1">Thank you for your consideration.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching logic
+            const tabs = document.querySelectorAll('.schedule-tab');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-tab');
+
+                    tabs.forEach(t => {
+                        t.classList.remove('tab-active');
+                        t.classList.add('tab-inactive');
+                    });
+                    tab.classList.remove('tab-inactive');
+                    tab.classList.add('tab-active');
+
+                    tabPanes.forEach(pane => {
+                        if (pane.id === target) {
+                            pane.classList.remove('hidden');
+                            pane.classList.add('active');
+                        } else {
+                            pane.classList.add('hidden');
+                            pane.classList.remove('active');
+                        }
+                    });
+                });
+            });
+            
+            // Smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Chart.js: Budget Chart
+            const budgetData = {
+                labels: ['Winner Prize', 'Runner-up Prizes', 'Certificates & Printing', 'Refreshments', 'Miscellaneous'],
+                datasets: [{
+                    label: 'Budget Allocation',
+                    data: [10000, 10000, 3000, 2000, 2000],
+                    backgroundColor: [
+                        '#f59e0b', // amber-500
+                        '#64748b', // slate-500
+                        '#0ea5e9', // sky-500
+                        '#84cc16', // lime-500
+                        '#ef4444'  // red-500
+                    ],
+                    borderColor: '#f8fafc', // slate-50
+                    borderWidth: 4,
+                    hoverOffset: 16
+                }]
+            };
+
+            const budgetConfig = {
+                type: 'doughnut',
+                data: budgetData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                color: '#475569', // slate-600
+                                font: {
+                                    size: 14,
+                                    family: "'Inter', sans-serif"
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(context.parsed);
+                                    }
+                                    return label;
+                                }
+                            },
+                            backgroundColor: '#1e293b', // slate-800
+                            titleFont: { size: 16, family: "'Inter', sans-serif" },
+                            bodyFont: { size: 14, family: "'Inter', sans-serif" },
+                            padding: 12,
+                            cornerRadius: 6,
+                            displayColors: false
+                        }
+                    },
+                    cutout: '60%'
+                }
+            };
+
+            const ctx = document.getElementById('budgetChart').getContext('2d');
+            new Chart(ctx, budgetConfig);
+        });
+    </script>
+</body>
+</html>
